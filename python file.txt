@@ -1,0 +1,73 @@
+class Bank_Application:
+    def __init__(self):
+        self.balance=15000
+        print("******** Welcome to Axis Bank Bank application ********")
+    def verification(self):
+        username = input("Enter your name:-")
+        phone_number = int(input("Enter your phone number:-"))
+        email = input("Enter your email address:-")
+        password = input("Enter your password:-")
+    def open_new_account(self):
+        name=input("Enter your name:-")
+        date_of_birth=input("Enter your date of birth:-")
+        mobile_number=int(input("Enter your mobile number:-"))
+        aadhaar_number=int(input("Enter your aadhaar number:-"))
+        pan_card=input("Enter your pan_card:-")
+    def deposit(self):
+        amount = float(input("Enter amount to be Deposited: "))
+        self.balance += amount
+        return "\n Amount Deposited:", amount
+
+    def withdraw(self):
+        amount = float(input("Enter amount to be Withdrawn: "))
+        if self.balance >= amount:
+            self.balance -= amount
+            return "\n You Withdrew:", amount
+        else:
+            print("\n Insufficient balance  ")
+    def display(self):
+        return "\n Net Available Balance=", self.balance
+
+
+s = Bank_Application()
+print('1.Open New Account')
+print('2.Deposit')
+print('3.Withdraw')
+print('4.Show Balance')
+choice=int(input("Please enter your choice:-"))
+s.verification()
+if choice==1:
+    s.open_new_account()
+elif choice==2:
+    s.deposit()
+elif choice==3:
+    s.withdraw()
+elif choice==4:
+    s.display()
+
+
+PYTHON UNIT TEST
+
+import unittest
+from application.app import Bank_Application
+
+
+# noinspection PyTypeChecker
+class MyTestCase(unittest.TestCase):
+    def test_deposit(self):
+        bk=Bank_Application
+        act=bk.deposit(self)
+        exp=19000.0
+        self.assertEqual(exp,act)
+    def test_withdrawn(self):
+        bk=Bank_Application
+        act=bk.withdraw(self)
+        exp=11000.0
+        self.assertEqual(exp,act)
+    def test_display(self):
+        bk=Bank_Application
+        act=bk.display()
+        exp=15000
+        self.assertEqual(exp,act)
+if __name__ == '__main__':
+    unittest.main()
